@@ -13,13 +13,14 @@ inherit devshell
 
 BBCLASSEXTEND = "native"
 
-SRCREV = "0cbc3b839688ca2de83b6103a637ce4519dc4ea5"
-SRC_URI = "git://github.com/edwinb/Idris2"
+SRC_URI = "https://www.idris-lang.org/idris2-src/idris2-0.1.0.tgz"
+SRC_URI[sha256sum] = "86f15cf37a3e5e01a586dc1900f1d89bbc2518b8e4b0d63872255b42b9e0ae24"
 
-S = "${WORKDIR}/git"
+S = "${WORKDIR}/idris2-0.1.0"
 
-EXTRA_OEMAKE = "'CC=gcc' -j 1"
+EXTRA_OEMAKE = "'CC=gcc'"
 
 do_install () {
+  ranlib dist/rts/libidris_rts.a
   oe_runmake install-fromc
 }
