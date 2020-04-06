@@ -28,3 +28,8 @@ do_compile() {
   oe_runmake -C dist
   oe_runmake all-fromc
 }
+
+do_install(){
+  install -d ${D}${bindir}
+  install -m 0755 ${B}/idris2 ${D}${bindir}
+}

@@ -10,6 +10,8 @@ DEPENDS = "util-linux"
 
 BBCLASSEXTEND = "native"
 
+EXTRA_OECONF = "'--threads'"
+
 PARALLEL_MAKE = "-j 1"
 
 SRC_URI = "git://github.com/cisco/ChezScheme;tag=v9.5.2;protocol=git"
