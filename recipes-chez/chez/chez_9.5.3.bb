@@ -3,8 +3,8 @@
 
 SUMMARY = "The Chez Scheme programming language"
 HOMEPAGE = "https://www.idris-lang.org/"
-# TODO change
-LICENSE = "MPL-2.0"
+LICENSE = "APACHE-2.0"
+LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 SECTION = "base"
 DEPENDS = "gcc"
 
