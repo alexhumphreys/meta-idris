@@ -6,7 +6,7 @@ HOMEPAGE = "https://cisco.github.io/ChezScheme/"
 LICENSE = "APACHE-2.0"
 LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 SECTION = "base"
-DEPENDS = "libuuid-native"
+DEPENDS = "util-linux"
 
 BBCLASSEXTEND = "native"
 

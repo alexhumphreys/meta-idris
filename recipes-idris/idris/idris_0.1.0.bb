@@ -7,6 +7,7 @@ HOMEPAGE = "https://www.idris-lang.org/"
 LICENSE = "MPL-2.0"
 LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=4091e2fa52af81d8172e4156b50e7051"
 SECTION = "base"
+DEPENDS = "chez-native"
 
 inherit devshell
 
