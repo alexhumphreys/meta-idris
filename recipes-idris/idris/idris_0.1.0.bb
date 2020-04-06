@@ -7,7 +7,6 @@ HOMEPAGE = "https://www.idris-lang.org/"
 LICENSE = "MPL-2.0"
 LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=4091e2fa52af81d8172e4156b50e7051"
 SECTION = "base"
-DEPENDS = "gcc"
 
 inherit devshell
 
@@ -19,13 +18,15 @@ SRC_URI[sha256sum] = "86f15cf37a3e5e01a586dc1900f1d89bbc2518b8e4b0d63872255b42b9
 S = "${WORKDIR}/idris2-${PV}"
 
 EXTRA_OEMAKE = "'CC=gcc'"
+PARALLEL_MAKE = "-j 1"
 
-do_configure () {
-}
-do_compile () {
+do_configure() {
 }
 
-do_install () {
-  ranlib dist/rts/libidris_rts.a
-  oe_runmake install-fromc 'CC=gcc'
+do_compile_prepend() {
+  oe_runmake -C dist
+}
+
+do_compile() {
+  oe_runmake all-fromc
 }
