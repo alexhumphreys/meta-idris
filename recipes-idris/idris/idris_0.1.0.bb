@@ -23,10 +23,7 @@ PARALLEL_MAKE = "-j 1"
 do_configure() {
 }
 
-do_compile_prepend() {
-  oe_runmake -C dist
-}
-
 do_compile() {
+  oe_runmake -C dist
   oe_runmake all-fromc
 }
