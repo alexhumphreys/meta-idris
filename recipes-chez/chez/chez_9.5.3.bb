@@ -17,3 +17,12 @@ PARALLEL_MAKE = "-j 1"
 SRC_URI = "git://github.com/cisco/ChezScheme;tag=v9.5.2;protocol=git"
 
 S = "${WORKDIR}/git"
+
+do_configure () {
+  ./configure --threads --installbin=${D}${bindir} --installlib=${D}${libdir} --installman=${D}${mandir}
+}
+
+do_install_append () {
+  oe_runmake install
+}
+
