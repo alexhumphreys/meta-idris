@@ -19,7 +19,7 @@ SRC_URI = "git://github.com/cisco/ChezScheme;tag=v9.5.2;protocol=git"
 S = "${WORKDIR}/git"
 
 do_configure () {
-  ./configure --threads --installbin=${D}${bindir} --installlib=${D}${libdir} --installman=${D}${mandir}
+  ./configure --threads --installbin=${D}${bindir} --installlib=${D}${libdir} --installman=${D}${mandir} --disable-x11
 }
 
 do_install_append () {
