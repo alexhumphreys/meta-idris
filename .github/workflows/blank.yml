@@ -1,0 +1,59 @@
+name: Ubuntu
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+  pull_request:
+    branches:
+      - master
+
+env:
+  SCHEME: scheme
+  IDRIS2_TESTS_CG: chez
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: install deps
+        run: |
+          sudo apt install gawk wget git diffstat unzip texinfo gcc-multilib build-essential chrpath socat cpio python python3 python3-pip python3-pexpect python-dev xz-utils debianutils iputils-ping cpu-checker default-jre parted repo
+        shell: bash
+      - name: repo step
+        run: |
+          mkdir myproject
+          cd myproject
+          repo init -u https://github.com/advancedtelematic/updater-repo.git -m dunfell.xml
+          repo sync
+        shell: bash
+      - name: add meta-idris
+        run: |
+          mkdir .repo/local_manifests
+          ls
+          ls ../
+          cp ../roomservice.xml .repo/local_manifests
+          repo sync
+        shell: bash
+
+      - name: Cache shared-download
+        uses: actions/cache@v2
+        env:
+          cache-name: shared-download
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: /opt/bitbake/shared-download
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+      - name: do bitbake
+        run: |
+          mkdir -p /opt/bitbake/shared-sstate
+          mkdir -p /opt/bitbake/shared-download
+          source meta-updater/scripts/envsetup.sh qemux86-64
+          echo 'SSTATE_DIR = "/opt/bitbake/shared-sstate"' >> conf/local.conf
+          echo 'DL_DIR = "/opt/bitbake/shared-download"' >> conf/local.conf
+          echo 'IMAGE_INSTALL_append = " hello-idris "' >> conf/local.conf
+          bitbake core-image-minimal
+        shell: bash
