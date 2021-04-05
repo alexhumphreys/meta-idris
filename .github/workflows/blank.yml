@@ -50,7 +50,14 @@ jobs:
           cache-name: shared-download
         with:
           path: /opt/bitbake/shared-download
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-download
+      - name: Cache shared-sstate
+        uses: actions/cache@v2
+        env:
+          cache-name: shared-download
+        with:
+          path: /opt/bitbake/shared-sstate
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-sstate
       - name: do bitbake
         run: |
           cd myproject
