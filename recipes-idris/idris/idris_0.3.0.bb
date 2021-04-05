@@ -7,7 +7,7 @@ HOMEPAGE = "https://www.idris-lang.org/"
 LICENSE = "MPL-2.0"
 LIC_FILES_CHKSUM = "file://${S}/LICENSE;md5=185a5f8668637c419f2e10b8a4c1e029"
 SECTION = "base"
-DEPENDS = "chez-native"
+DEPENDS = "chez-native gcc make"
 
 inherit devshell
 
