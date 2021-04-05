@@ -67,5 +67,6 @@ jobs:
           echo 'DL_DIR = "/opt/bitbake/shared-download"' >> conf/local.conf
           echo 'IMAGE_INSTALL_append = " hello-idris "' >> conf/local.conf
           echo 'BBLAYERS += "${METADIR}/meta-idris"' >> conf/bblayers.conf
+          echo 'INHERIT += "rm_work"' >> conf/bblayers.conf
           bitbake core-image-minimal
         shell: bash
