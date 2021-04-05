@@ -36,15 +36,10 @@ jobs:
           cd myproject
           repo init -u https://github.com/advancedtelematic/updater-repo.git -m dunfell.xml
           repo sync
-          ls -lah
-          pwd
         shell: bash
       - name: add meta-idris
         run: |
           cd myproject
-          pwd
-          ls
-          ls ../
           mkdir -p .repo/local_manifests
           cp ../repo/roomservice.xml .repo/local_manifests
           repo sync
@@ -54,7 +49,6 @@ jobs:
         env:
           cache-name: shared-download
         with:
-          # npm cache files are stored in `~/.npm` on Linux/macOS
           path: /opt/bitbake/shared-download
           key: ${{ runner.os }}-build-${{ env.cache-name }}
       - name: do bitbake
@@ -68,5 +62,5 @@ jobs:
           echo 'IMAGE_INSTALL_append = " hello-idris "' >> conf/local.conf
           echo 'BBLAYERS += "${METADIR}/meta-idris"' >> conf/bblayers.conf
           echo 'INHERIT += "rm_work"' >> conf/bblayers.conf
-          bitbake hello-idris -c install -D
+          bitbake hello-idris -c install
         shell: bash
