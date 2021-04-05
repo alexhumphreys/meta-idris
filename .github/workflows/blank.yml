@@ -62,5 +62,5 @@ jobs:
           echo 'IMAGE_INSTALL_append = " hello-idris "' >> conf/local.conf
           echo 'BBLAYERS += "${METADIR}/meta-idris"' >> conf/bblayers.conf
           echo 'INHERIT += "rm_work"' >> conf/bblayers.conf
-          bitbake hello-idris -c install
+          bitbake idris -c install
         shell: bash
