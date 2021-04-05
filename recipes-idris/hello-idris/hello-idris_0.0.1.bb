@@ -13,12 +13,14 @@ SRC_URI = "file://Hello.idr"
 S = "${WORKDIR}"
 
 do_compile() {
-    ls
+    idris2 Hello.idr --codegen node -o helloRefc
     idris2 Hello.idr --codegen node -o hello
 }
 
 do_install_append () {
+    install -d ${D}${bindir}
+    install -m 0755 ${B}/build/exec/helloRefc ${D}${bindir}
+
     install -d ${D}${libdir}/hello-idris
-    ls
     install ${S}/build/exec/hello ${D}/${libdir}/hello-idris/hello
 }
