@@ -66,5 +66,6 @@ jobs:
           echo 'SSTATE_DIR = "/opt/bitbake/shared-sstate"' >> conf/local.conf
           echo 'DL_DIR = "/opt/bitbake/shared-download"' >> conf/local.conf
           echo 'IMAGE_INSTALL_append = " hello-idris "' >> conf/local.conf
+          echo 'BBLAYERS += "${METADIR}/meta-idris"' >> conf/bblayers.conf
           bitbake core-image-minimal
         shell: bash
