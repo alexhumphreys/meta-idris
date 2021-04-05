@@ -36,12 +36,15 @@ jobs:
           cd myproject
           repo init -u https://github.com/advancedtelematic/updater-repo.git -m dunfell.xml
           repo sync
+          ls -lah
+          pwd
         shell: bash
       - name: add meta-idris
         run: |
-          mkdir .repo/local_manifests
+          pwd
           ls
           ls ../
+          mkdir -p .repo/local_manifests
           cp ../roomservice.xml .repo/local_manifests
           repo sync
         shell: bash
