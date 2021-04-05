@@ -41,14 +41,14 @@ jobs:
         shell: bash
       - name: add meta-idris
         run: |
+          cd myproject
           pwd
           ls
           ls ../
           mkdir -p .repo/local_manifests
-          cp ../roomservice.xml .repo/local_manifests
+          cp ../repo/roomservice.xml .repo/local_manifests
           repo sync
         shell: bash
-
       - name: Cache shared-download
         uses: actions/cache@v2
         env:
@@ -59,6 +59,7 @@ jobs:
           key: ${{ runner.os }}-build-${{ env.cache-name }}
       - name: do bitbake
         run: |
+          cd myproject
           mkdir -p /opt/bitbake/shared-sstate
           mkdir -p /opt/bitbake/shared-download
           source meta-updater/scripts/envsetup.sh qemux86-64
